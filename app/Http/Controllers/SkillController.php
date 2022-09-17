@@ -118,4 +118,18 @@ class SkillController extends Controller
             return response($e->getMessage());
         }
     }
+
+    public static function getSkills() {
+        $skills = Skill::all();
+
+        $skillList = [];
+
+        foreach($skills as $skill) {
+            $skillItem = ['skill' => $skill->skill, 'experience' => $skill->years];
+
+            array_push($skillList, $skillItem);
+        }
+
+        return $skillList;
+    }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\SkillController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/menu', function(){
+    return json_encode(PageController::getMenuItems());
+});
+
+Route::get('/content/{id}', function($id) {
+    return json_encode(PageController::getContent(intval($id)));
+});
+
+Route::get('/skills', function() {
+    return json_encode(SkillController::getSkills());
 });

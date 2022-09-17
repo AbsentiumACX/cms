@@ -126,4 +126,39 @@ class PageController extends Controller
             return response($e->getMessage());
         }
     }
+
+    /**
+     * Get the menu items for the frontend as JSON form the API
+     */
+    public static function getMenuItems() {
+        $mainItems = Page::where('parent', NULL)->get();
+
+        $menu = array();
+
+        foreach($mainItems as $item) {
+            $children = Page::where('parent', $item->id)->get();
+            $menuItem = ['id' => $item->id, 'title' => $item->title];
+
+            if($children != []) {
+                $childrenSet = [];
+                foreach($children as $child) {
+                    $child = ['id' => $child->id, 'title' => $child->title];
+                    $childrenSet = array_merge($childrenSet, $child);
+                }
+                $menuItem['children'] = $childrenSet;
+            }
+
+            array_push($menu, $menuItem);
+        }
+
+        return $menu;
+    }
+
+    public static function getContent($pageId) {
+        $page = Page::where('id', $pageId)->first();
+
+        $pageContent = ['title' => $page->title, 'content' => $page->content];
+
+        return $pageContent;
+    }
 }
