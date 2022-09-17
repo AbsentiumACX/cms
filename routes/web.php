@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FormEntryController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SkillController;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,4 @@ Auth::routes();
 
 Route::resource('page', PageController::class);
 Route::resource('skill', SkillController::class);
+Route::resource('form-entry', FormEntryController::class);
