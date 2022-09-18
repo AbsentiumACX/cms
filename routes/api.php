@@ -24,8 +24,8 @@ Route::get('/menu', function(){
     return json_encode(PageController::getMenuItems());
 });
 
-Route::get('/content/{id}', function($id) {
-    return json_encode(PageController::getContent(intval($id)));
+Route::get('/content/{title}', function($title) {
+    return json_encode(PageController::getContent($title));
 });
 
 Route::get('/skills', function() {
