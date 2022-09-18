@@ -54,7 +54,7 @@ class PageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'         => 'required',
+            'title'         => 'required|unique:pages,title',
             'content'       => 'required',
         ]);
 
@@ -94,7 +94,7 @@ class PageController extends Controller
     public function update(Request $request, Page $page)
     {
         $request->validate([
-            'title'         => 'required',
+            'title'         => 'required|unique:page,title,' . $page->title,
             'content'       => 'required',
         ]);
 
@@ -154,8 +154,8 @@ class PageController extends Controller
         return $menu;
     }
 
-    public static function getContent($pageId) {
-        $page = Page::where('id', $pageId)->first();
+    public static function getContent($title) {
+        $page = Page::where('title', $title)->first();
 
         $pageContent = ['title' => $page->title, 'content' => $page->content];
 
