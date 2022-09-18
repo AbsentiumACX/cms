@@ -94,7 +94,7 @@ class PageController extends Controller
     public function update(Request $request, Page $page)
     {
         $request->validate([
-            'title'         => 'required|unique:pages,title,' . $page->title,
+            'title'         => 'required',
             'content'       => 'required',
         ]);
 
