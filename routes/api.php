@@ -25,7 +25,7 @@ Route::get('/menu', function(){
 });
 
 Route::get('/content', function() {
-    return json_encode(PageController::getContent('Home'));
+    return json_encode(PageController::getContent('Welkom bij ACXDev'));
 });
 
 Route::get('/content/{title}', function($title) {
