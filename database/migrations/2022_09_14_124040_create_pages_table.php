@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreatePagesTable extends Migration
 {
@@ -20,6 +21,14 @@ class CreatePagesTable extends Migration
             $table->integer('parent')->nullable();
             $table->timestamps();
         });
+
+        DB::table('pages')->insert(
+            array(
+                'title' => 'Welkom bij ACXDev',
+                'content' => '<p>Welkom bij ACXDev!</p>'
+                    . '<p>Kijk vooral even rond op de website. Heb je nog vragen? Neem dan contact met ons op via ons contact formulier!</p>',
+            )
+        );
     }
 
     /**
