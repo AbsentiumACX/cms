@@ -140,10 +140,10 @@ class PageController extends Controller
             $menuItem = ['id' => $item->id, 'title' => $item->title];
 
             if($children != []) {
-                $childrenSet = [];
+                $childrenSet = array();
                 foreach($children as $child) {
                     $child = ['id' => $child->id, 'title' => $child->title];
-                    $childrenSet = array_merge($childrenSet, $child);
+                    array_push($childrenSet, $child);
                 }
                 $menuItem['children'] = $childrenSet;
             }
