@@ -24,6 +24,10 @@ Route::get('/menu', function(){
     return json_encode(PageController::getMenuItems());
 });
 
+Route::get('/content', function() {
+    return json_encode(PageController::getContent('Home'));
+});
+
 Route::get('/content/{title}', function($title) {
     return json_encode(PageController::getContent($title));
 });
